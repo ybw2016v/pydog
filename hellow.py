@@ -1,4 +1,4 @@
-#filename=hellow.py
+#Filename=hellow.py
 print 'hellow world'
 dog = 5
 cat = int (raw_input('Enter an integer : '))
