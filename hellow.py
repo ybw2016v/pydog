@@ -1,7 +1,7 @@
 #Filename=hellow.py
 print 'hellow world'
 dog = 5
-cat = int (raw_input('Enter an integer : '))
+cat = int (raw_input('what is the dog: '))
 if dog == cat:
     print 'dog is cat'
 
