@@ -20,14 +20,17 @@ r = session.get("https://www.zhihu.com/#signin", headers = headers )
 print (r.status_code)
 for name,value in r.headers.items():
     print ("%s:%s" % (name, value))
-soup = BeautifulSoup(r.content, "html.parser")
-xsrf = soup.find('input', attrs={"name": "_xsrf"}).get("value")
-print (xsrf)
+
 eepdog=r.content#这里的数据类型是bytes，需要用decode转化成字符串str
 #print (eepdog.decode())
 #下面提取验证码图片
 dog=input('是否登录：')
 if dog=='y':
+    soup = BeautifulSoup(r.content, "html.parser")
+    xsrf = soup.find('input', attrs={"name": "_xsrf"}).get("value")
+    print (xsrf)
+    phone_num=input('手机号：')
+    password=input('password:')
     print('正在登录……')
     t = str(int(time.time() * 1000))
     captcha_url = 'https://www.zhihu.com/captcha.gif?r=%d&type=login&lang=cn' % (time.time() * 10000)
@@ -111,16 +114,28 @@ if dog=='y':
             ll=ll+',[151.89,23.38]'
     else:
         pass
-
+    print('字符串的第一次拼接：')
+    print(ll)
+    print('第二次字符串拼接')
+    captcha='{"img_size":[200,44],"input_points":['+ll+']}'
+    print(captcha)
 
 
 #random.uniform(a, b)，用于生成一个指定范围内的随机符点数，两个参数其中一个是上限，一个是下限。如果a > b，则生成的随机数n: a <= n <= b。如果 a <b， 则 b <= n <= a。
-     data = {
+    data = {
         'phone_num': phone_num,
         'password': password,
         '_xsrf': xsrf,
         "captcha": captcha,
-        'captcha_type':cn}
+        'captcha_type':'cn'}
+    postdog='https://www.zhihu.com/login/phone_num'
+    response = session.post(postdog, data=data, headers=headers)
+    login_code = response.json()
+    print(login_code['msg'])
+    for i in session.cookies:
+        print(i)
+    session.cookies.save()
+
 
 
 
@@ -133,3 +148,5 @@ if dog=='y':
 else:
     session.cookies.save()
     pass
+rapdog= session.get("https://www.zhihu.com/", headers = headers )
+print(rapdog.content.decode())

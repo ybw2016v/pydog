@@ -74,3 +74,5 @@ if ectdog['zf7']==0 :
 else:
     pass
 print(ll)
+captcha='{"img_size":[200,44],"input_points":['+ll+']}'
+print(captcha)
