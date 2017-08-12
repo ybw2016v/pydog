@@ -43,11 +43,84 @@ if dog=='y':
              'zf5' : 1,
              'zf6' : 1,
              'zf7' : 1
-           }
-    ectdog.sort()
+           }#这个字典没有顺序。
+    #ectdog.sort() #这里报错了。
+    numberdog= 0
     for a,b  in ectdog.items():
-        b=input('the code of%s:' %a )
+        #a=int(input('the code of %s:' %a ))   #这里好像没有什么用
+        ectdog[a]=int(input('the code of %s:' %a ))
+    for a,b  in ectdog.items():
+        numberdog=numberdog+b
+    for a,b  in ectdog.items():
+        print (b)
+    print ('共有')
+    print(7-numberdog)
+    print ('个倒立文字。')
+    kdog=0
+    ll=''
+    if ectdog['zf1']==0 :
+        ll='[12.95,15]'
+        kdog=1
+    else:
+        pass
+    if ectdog['zf2']==0 :
+        if kdog==0:
+            ll=ll+'[36.1,16.1]'
+            kdog=1
+        else:
+            ll=ll+',[36.1,16.1]'
+    else:
+        pass
+    if ectdog['zf3']==0 :
+        if kdog==0:
+            ll=ll+'[57.16,24.44]'
+            kdog=1
+        else:
+            ll=ll+',[57.16,24.44]'
+    else:
+        pass
+    if ectdog['zf4']==0 :
+        if kdog==0:
+            ll=ll+'[84.52,19.17]'
+            kdog=1
+        else:
+            ll=ll+',[84.52,19.17]'
+    else:
+        pass
+    if ectdog['zf5']==0 :
+        if kdog==0:
+            ll=ll+'[108.72,28.64]'
+            kdog=1
+        else:
+            ll=ll+',[108.72,28.64]'
+    else:
+        pass
+    if ectdog['zf6']==0 :
+        if kdog==0:
+            ll=ll+'[132.95,24.44]'
+            kdog=1
+        else:
+            ll=ll+',[132.95,24.44]'
+    else:
+        pass
+    if ectdog['zf7']==0 :
+        if kdog==0:
+            ll=ll+'[151.89,23.38]'
+            kdog=1
+        else:
+            ll=ll+',[151.89,23.38]'
+    else:
+        pass
 
+
+
+#random.uniform(a, b)，用于生成一个指定范围内的随机符点数，两个参数其中一个是上限，一个是下限。如果a > b，则生成的随机数n: a <= n <= b。如果 a <b， 则 b <= n <= a。
+     data = {
+        'phone_num': phone_num,
+        'password': password,
+        '_xsrf': xsrf,
+        "captcha": captcha,
+        'captcha_type':cn}
 
 
 
@@ -58,4 +131,5 @@ if dog=='y':
 
     session.cookies.save()
 else:
+    session.cookies.save()
     pass
