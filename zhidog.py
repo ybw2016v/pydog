@@ -148,5 +148,5 @@ if dog=='y':
 else:
     session.cookies.save()
     pass
-rapdog= session.get("https://www.zhihu.com/", headers = headers )
+rapdog= session.get("https://www.zhihu.com/collection/172453801", headers = headers )
 print(rapdog.content.decode())
