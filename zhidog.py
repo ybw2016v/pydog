@@ -146,4 +146,15 @@ else:
     session.cookies.save()
     pass
 rapdog= session.get("https://www.zhihu.com/collection/172453801", headers = headers )
-print(rapdog.content.decode())
+#print(rapdog.content.decode())
+soup = BeautifulSoup(rapdog.content, "html.parser")
+#upsdog=soup.find_all('div',content='data-aid')#.get("content")
+#print(upsdog)
+upsdog=soup.find_all('div', attrs={"class":"zm-item-answer "})
+for idog in upsdog :
+    id666=idog.get('data-aid')
+    print(id666)
+ups2dog=soup.find_all('div', attrs={"class":"zm-item-answer "})
+for ipig in ups2dog :
+    id777=ipig.get('data-atoken')
+    print (id777)
