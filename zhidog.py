@@ -1,5 +1,5 @@
 #Filename=zhidog.py
-import requests,time, os
+import requests,time, os ,random
 #import cookies
 from bs4 import BeautifulSoup
 from http import cookiejar
@@ -154,57 +154,61 @@ if dog=='y':
 else:
     session.cookies.save()
     pass
-rapdog= session.get("https://www.zhihu.com/collection/172453801?page=3", headers = headers )
-#print(rapdog.content.decode())
-soup2 = BeautifulSoup(rapdog.content, "html.parser")
-xsrf2 = soup2.find('input', attrs={"name": "_xsrf"}).get("value")
-print(xsrf2)
-session.cookies.save()
-#upsdog=soup.find_all('div',content='data-aid')#.get("content")
-#print(upsdog)
-upsdog=soup2.find_all('div', attrs={"class":"zm-item-answer "})#提取开始，类似数组的东西。
-dognumber=0
-for idog in upsdog :
-    id666=idog.get('data-aid')
-    print(id666)
-    dognumber=dognumber+1
-ups2dog=soup2.find_all('div', attrs={"class":"zm-item-answer "})
-for ipig in ups2dog :
-    id777=ipig.get('data-atoken')
-    print (id777)
-print(upsdog[0].get('data-aid'))
-headersdog = {
-    "Host": "www.zhihu.com",
-    "Referer": "https://www.zhihu.com/collection/172453801",
-    'User-Agent': 'ser-Agent:Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)\
-     Ubuntu Chromium/60.0.3112.78 Chrome/60.0.3112.78 Safari/537.36',
-     'X-Xsrftoken':'36992469-649e-404b-8433-afc3cebcfa1e',
-     '_xsrf': xsrf2
-}
-for i in range(0, dognumber):
-    session = requests.session()
-    session.cookies = cookiejar.LWPCookieJar(filename='/home/yu/aadog/cookies.txt')
-    try:
-        session.cookies.load(ignore_discard=True)
-    except :
-        print ("load cookies failed")
 
-    dogdata={
-    'type':'answer',
-    'id':str(upsdog[i].get('data-aid')),
-    'urlToken':str(ups2dog[i].get('data-atoken')),
-    'reason':'politics',
-    'source':'web',
-    '_xsrf': xsrf2
-    }
-    print (str(upsdog[i].get('data-aid')))
-    print(ups2dog[i].get('data-atoken'))
-    responsedog2 = session.post("https://www.zhihu.com/report", data=dogdata, headers=headersdog,verify=False)
-    #report_code = responsedog2.json()
-    print(i)
-    print(responsedog2.content.decode())
-    #print(report_code['msg'])
-    time.sleep(10)
+for pigdog in range(1,15):
+    pigurl=str(pigdog)
+    dogurl="https://www.zhihu.com/collection/172453801?page="+pigurl
+    rapdog= session.get(dogurl, headers = headers )
+    #print(rapdog.content.decode())
+    soup2 = BeautifulSoup(rapdog.content, "html.parser")
+    xsrf2 = soup2.find('input', attrs={"name": "_xsrf"}).get("value")
+    print(xsrf2)
     session.cookies.save()
+    #upsdog=soup.find_all('div',content='data-aid')#.get("content")
+    #print(upsdog)
+    upsdog=soup2.find_all('div', attrs={"class":"zm-item-answer "})#提取开始，类似数组的东西。
+    dognumber=0
+    for idog in upsdog :
+        id666=idog.get('data-aid')
+        print(id666)
+        dognumber=dognumber+1
+    ups2dog=soup2.find_all('div', attrs={"class":"zm-item-answer "})
+    for ipig in ups2dog :
+        id777=ipig.get('data-atoken')
+        print (id777)
+    print(upsdog[0].get('data-aid'))
+    headersdog = {
+        "Host": "www.zhihu.com",
+        "Referer": "https://www.zhihu.com/collection/172453801",
+        'User-Agent': 'ser-Agent:Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)\
+         Ubuntu Chromium/60.0.3112.78 Chrome/60.0.3112.78 Safari/537.36',
+         'X-Xsrftoken':'36992469-649e-404b-8433-afc3cebcfa1e',
+         '_xsrf': xsrf2
+    }
+    for i in range(0, dognumber):
+        session = requests.session()
+        session.cookies = cookiejar.LWPCookieJar(filename='/home/yu/aadog/cookies.txt')
+        try:
+            session.cookies.load(ignore_discard=True)
+        except :
+            print ("load cookies failed")
 
-print ('end')
+        dogdata={
+        'type':'answer',
+        'id':str(upsdog[i].get('data-aid')),
+        'urlToken':str(ups2dog[i].get('data-atoken')),
+        'reason':'politics',
+        'source':'web',
+        '_xsrf': xsrf2
+        }
+        print (str(upsdog[i].get('data-aid')))
+        print(ups2dog[i].get('data-atoken'))
+        responsedog2 = session.post("https://www.zhihu.com/report", data=dogdata, headers=headersdog,verify=False)
+        #report_code = responsedog2.json()
+        print(i)
+        print(responsedog2.content.decode())
+        #print(report_code['msg'])
+        time.sleep(4+random.uniform(-2, 2))
+        session.cookies.save()
+
+    print ('end')
