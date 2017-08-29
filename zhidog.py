@@ -155,7 +155,7 @@ else:
     session.cookies.save()
     pass
 
-for pigdog in range(1,15):
+for pigdog in range(1,2):
     pigurl=str(pigdog)
     dogurl="https://www.zhihu.com/collection/172453801?page="+pigurl
     rapdog= session.get(dogurl, headers = headers )
@@ -208,7 +208,8 @@ for pigdog in range(1,15):
         print(i)
         print(responsedog2.content.decode())
         #print(report_code['msg'])
-        time.sleep(4+random.uniform(-2, 2))
+        time.sleep(20+random.uniform(-18,20))
         session.cookies.save()
+    time.sleep(30+random.uniform(-10, 10))
 
     print ('end')
