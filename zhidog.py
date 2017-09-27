@@ -155,7 +155,7 @@ else:
     session.cookies.save()
     pass
 
-for pigdog in range(1,2):
+for pigdog in range(1,14):
     pigurl=str(pigdog)
     dogurl="https://www.zhihu.com/collection/172453801?page="+pigurl
     rapdog= session.get(dogurl, headers = headers )
@@ -203,7 +203,7 @@ for pigdog in range(1,2):
         }
         print (str(upsdog[i].get('data-aid')))
         print(ups2dog[i].get('data-atoken'))
-        responsedog2 = session.post("https://www.zhihu.com/report", data=dogdata, headers=headersdog,verify=False)
+        responsedog2 = session.post("https://www.zhihu.com/report", data=dogdata, headers=headersdog)
         #report_code = responsedog2.json()
         print(i)
         print(responsedog2.content.decode())
