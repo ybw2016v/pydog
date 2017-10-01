@@ -18,3 +18,7 @@ for i in fline:
 print(lines)
 print('#')
 #print(re.search('.*=.*',lines[0]))
+comdog=re.compile(r'(.*)=(.*)')
+print(comdog.findall(lines[0]))
+echdog=comdog.findall(lines[0])
+print(echdog[0][1])

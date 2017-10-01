@@ -19,13 +19,12 @@ def readconf():
     fline = f.readlines()
     ###删除注释
     for i in fline:
-        if i.startswith('#'):
+        if i.startswith('#') or not re.match('.*=.*',fline[fline.index(i)]):
             del fline[fline.index(i)]
         else:
             pass
 
 
-    ###
     conf=fline
 
 
@@ -33,8 +32,16 @@ def readconf():
     return conf
 def hconf(confl):
         print(confl)
+        comdog=re.compile(r'(.*)=(.*)')
+        for j in confl:
+            jdog=comdog.findall(j)
+            zhiliang[jdog[0][0]]=float(jdog[0][1])
+        print(zhiliang)
+
+
+
 hconf(readconf())
-print(zhiliang)
+#print(zhiliang)
 #hconf(ll)
 #readconf()
 #hconf(readconf())
