@@ -9,6 +9,12 @@ for i in fline:
     if i.startswith('#'):
         pass
     else:
-        lines.append(i)
+        if re.match('.*=.*',fline[fline.index(i)]):
+            lines.append(i)
+        else:
+            pass
+
         #setnumber=setnumber+1
 print(lines)
+print('#')
+#print(re.search('.*=.*',lines[0]))
