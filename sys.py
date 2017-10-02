@@ -1,6 +1,6 @@
 #python3
 import re
-import indog
+#import indog
 from indog import shi
 zhiliang={}
 listdata=[]
@@ -32,6 +32,7 @@ def readconf():
 
 
     #print(conf)
+    f.close()
     return conf
 def hconf(confl):
     '''对配置文件中的信息进行解读'''
@@ -56,3 +57,5 @@ hconf(readconf())
 #hconf(readconf())
 #print(conf)
 print(shi(indog()))
+#shidog=shi(indog())
+print(conf)
