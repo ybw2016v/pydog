@@ -2,6 +2,7 @@
 import re
 #import indog
 from indog import shi
+from cal1 import welldog,calone
 zhiliang={}
 listdata=[]
 aimdog={}
@@ -56,6 +57,8 @@ hconf(readconf())
 #readconf()
 #hconf(readconf())
 #print(conf)
-print(shi(indog()))
-#shidog=shi(indog())
+#print(shi(indog()))
+shidog=shi(indog())
+print(shidog)
 print(conf)
+print(calone(conf,shidog))
